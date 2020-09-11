@@ -45,6 +45,7 @@ void serveur::connexionClient()
     connect( m_socket_client, SIGNAL(readyRead()), this,
              SLOT(lireTexte()));
 }
+
 void serveur::lireTexte()
 {
     QDataStream in(m_socket_client);
