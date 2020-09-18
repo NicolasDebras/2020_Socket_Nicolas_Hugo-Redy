@@ -9,8 +9,9 @@ class serveur: public QObject
 {
     Q_OBJECT
 private:
+    int m_nbclients;
     QTcpServer *m_tcp_server;//Lasocketgénéral
-    QTcpSocket *m_socket_client;//Lasocketclient
+    QTcpSocket *m_socket_client[2];//Lasocketclient
     QNetworkSession *m_network_session;
     quint16 m_blockSize;
 

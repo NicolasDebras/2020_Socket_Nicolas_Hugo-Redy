@@ -2,6 +2,7 @@
 
 serveur::serveur()
 {
+    m_nbclients = 0;
     m_blockSize = 0;
     QNetworkConfigurationManager manager;
     QNetworkConfiguration config = manager.defaultConfiguration();
@@ -40,30 +41,33 @@ void serveur::sessionOuverte()
 void serveur::connexionClient()
 {
 
-    m_socket_client = m_tcp_server->nextPendingConnection();
+    m_socket_client[m_nbclients] = m_tcp_server->nextPendingConnection();
     std::cout << "affichage client" << std::endl;
+    for (int i = 0; i != 100; i++)
+        connect( m_socket_client[m_nbclients], SIGNAL(readyRead()), this,
+                 SLOT(lireTexte()));
+    m_nbclients++;
 
-    connect( m_socket_client, SIGNAL(readyRead()), this,
-             SLOT(lireTexte()));
 }
 
 void serveur::lireTexte()
 {
-    QDataStream in(m_socket_client);
+    QTcpSocket* socket = (QTcpSocket*)sender();
+    QDataStream in(socket);
     in.setVersion(QDataStream::Qt_4_0);
     if (m_blockSize == 0) {
-        if (m_socket_client->bytesAvailable() < (int)sizeof(quint16))
+        if (socket->bytesAvailable() < (int)sizeof(quint16))
             return;
         in >> m_blockSize;
     }
-    if (m_socket_client->bytesAvailable() < m_blockSize)
+    if (socket->bytesAvailable() < m_blockSize)
         return;
     QString texte;
     in >> texte;
     std::cout << "\n" << texte.toStdString() << std::endl;
     send_message(texte);
     m_blockSize = 0;
-    lireTexte();
+    //lireTexte();
 }
 void serveur::send_message(QString texte) {
 
@@ -74,6 +78,6 @@ void serveur::send_message(QString texte) {
     out << texte;
     out.device()->seek(0);
     out << (quint16)(block.size() - sizeof(quint16));
-    m_socket_client->write(block);
+    m_socket_client[0]->write(block);
 }
 
