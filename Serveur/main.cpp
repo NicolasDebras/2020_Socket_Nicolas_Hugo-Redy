@@ -7,6 +7,6 @@ int main (int argc, char *argv[])
 
     serveur Serveur;
 
-    //std::cout << "sdfdsfdsfds\n" <<  std::endl;
+
     return a.exec();
 }
