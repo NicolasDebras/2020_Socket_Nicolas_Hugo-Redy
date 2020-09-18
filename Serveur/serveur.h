@@ -16,11 +16,13 @@ private:
 
 public:
     serveur();
+    void send_message(QString texte);
 
 public slots:
     void sessionOuverte();
     void connexionClient();
     void lireTexte();
+
 
 };
 
