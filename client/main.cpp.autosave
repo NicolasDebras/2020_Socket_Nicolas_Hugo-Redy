@@ -1,9 +1,0 @@
-#include <QCoreApplication>
-#include <client.h>
-
-int main()
-{
-    client client
-
-    return 0;
-}

@@ -41,6 +41,7 @@ void serveur::connexionClient()
 {
 
     m_socket_client = m_tcp_server->nextPendingConnection();
+    std::cout << "affichage client" << std::endl;
 
     connect( m_socket_client, SIGNAL(readyRead()), this,
              SLOT(lireTexte()));

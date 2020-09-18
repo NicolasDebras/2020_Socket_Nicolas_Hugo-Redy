@@ -1,6 +1,6 @@
-#include <client.h>
+#include <Client.h>
 
-client::client() {
+Client::Client() {
 
     std::cout << "Application Client" << std::endl;
     m_tcpSocket = new QTcpSocket(this);
@@ -21,7 +21,7 @@ client::client() {
     m_tcpSocket->connectToHost(
                 QHostAddress("127.0.0.1").toString(),53000 );
 }
-void client::lireTexte() {
+void Client::lireTexte() {
 
     QDataStream in(m_tcpSocket);
     in.setVersion(QDataStream::Qt_4_0);
@@ -40,7 +40,7 @@ void client::lireTexte() {
     m_blockSize = 0;
 }
 
-void client::afficherErreur( QAbstractSocket::SocketError socketError) {
+void Client::afficherErreur( QAbstractSocket::SocketError socketError) {
     switch (socketError) {
     case QAbstractSocket::RemoteHostClosedError:
         break;
@@ -56,7 +56,7 @@ void client::afficherErreur( QAbstractSocket::SocketError socketError) {
 
     }
 }
-void client::send_message() {
+void Client::send_message() {
 
     QString texte = "TEXTE A ENVOYER";
     QByteArray block;
