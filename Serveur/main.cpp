@@ -3,7 +3,7 @@
 
 int main()
 {
-    serveur();
+    serveur Serveur;
 
     return 0;
 }
