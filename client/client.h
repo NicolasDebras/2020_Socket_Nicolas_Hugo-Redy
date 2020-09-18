@@ -15,7 +15,7 @@ class Client: public QObject
 
     public:
         Client();
-        void send_message();
+        void send_message(QString texte);
 
     private slots:
         void lireTexte();

@@ -56,9 +56,8 @@ void Client::afficherErreur( QAbstractSocket::SocketError socketError) {
 
     }
 }
-void Client::send_message() {
+void Client::send_message(QString texte) {
 
-    QString texte = "TEXTE A ENVOYER";
     QByteArray block;
     QDataStream out(&block, QIODevice::WriteOnly);
     out.setVersion(QDataStream::Qt_4_0);
