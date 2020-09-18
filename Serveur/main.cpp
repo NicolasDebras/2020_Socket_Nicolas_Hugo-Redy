@@ -4,6 +4,7 @@
 int main()
 {
     serveur Serveur;
+    serveur();
 
     return 0;
 }
