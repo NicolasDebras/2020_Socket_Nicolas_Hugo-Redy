@@ -10,19 +10,21 @@ int main(int argc, char *argv[])
     user user_1;
 
     user_1.write_message();
+    std::cout << "\n" << user_1.get_message().toStdString() << std::endl;
     client_1.send_message(user_1.get_name());
-    client_1.send_message(user_1.get_name());
-    client_1.send_message(user_1.get_name());
-
-    client_1.send_message(user_1.get_name());
-    client_1.send_message(user_1.get_name());
-    client_1.send_message(user_1.get_name());
-    client_1.send_message(user_1.get_name());
-    client_1.send_message(user_1.get_name());
-    client_1.send_message(user_1.get_name());
-    client_1.send_message(user_1.get_name());
-
     client_1.send_message(user_1.get_message());
+    client_1.send_message(user_1.get_name());
+    client_1.send_message(user_1.get_name());
+
+    client_1.send_message(user_1.get_name());
+    client_1.send_message(user_1.get_name());
+    client_1.send_message(user_1.get_name());
+    client_1.send_message(user_1.get_name());
+    client_1.send_message(user_1.get_name());
+    client_1.send_message(user_1.get_name());
+    client_1.send_message(user_1.get_name());
+
+
 
     return a.exec();
 }

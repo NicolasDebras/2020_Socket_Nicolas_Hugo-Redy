@@ -37,6 +37,7 @@ void Client::lireTexte() {
 
     QString texte;
     in >> texte;
+    std::cout << "\n" << texte.toStdString() << std::endl;
     m_blockSize = 0;
 }
 

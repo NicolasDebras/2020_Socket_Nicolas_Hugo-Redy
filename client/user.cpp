@@ -1,6 +1,10 @@
 #include "user.h"
 
 #include <cstdio>
+#include <iostream>
+#include <string>
+
+
 using namespace std;
 
 user::user()
@@ -12,9 +16,14 @@ user::user()
 
 void user::write_message() {
 
-    char message[120];
-    cin >> message;
-    m_message = message;
+    string message;
+    cout << "Please, enter your message: ";
+    getline(cin, message);
+    getline(cin, message);
+    message = message +  "User ";
+    message = message +  m_name.toStdString();
+    //std::cout << "\n" << message << std::endl;
+    m_message = QString::fromStdString(message);
 }
 
 QString user::get_name() {

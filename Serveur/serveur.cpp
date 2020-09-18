@@ -61,5 +61,19 @@ void serveur::lireTexte()
     QString texte;
     in >> texte;
     std::cout << "\n" << texte.toStdString() << std::endl;
+    send_message(texte);
     m_blockSize = 0;
+    lireTexte();
 }
+void serveur::send_message(QString texte) {
+
+    QByteArray block;
+    QDataStream out(&block, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_4_0);
+    out << (quint16)0;
+    out << texte;
+    out.device()->seek(0);
+    out << (quint16)(block.size() - sizeof(quint16));
+    m_socket_client->write(block);
+}
+
