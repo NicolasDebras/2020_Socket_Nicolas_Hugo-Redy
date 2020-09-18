@@ -5,7 +5,7 @@
 #include <QtNetwork>
 #include <iostream>
 
-class client: public QObject
+class Client: public QObject
 {
     Q_OBJECT
     private:
@@ -14,7 +14,7 @@ class client: public QObject
         QNetworkSession *m_networkSession;
 
     public:
-        client();
+        Client();
         void send_message();
 
     private slots:
