@@ -15,7 +15,7 @@ private:
 public:
     user();
     void write_message();
-    void menu();
+    bool menu();
     QString get_name();
     QString get_message();
 };
