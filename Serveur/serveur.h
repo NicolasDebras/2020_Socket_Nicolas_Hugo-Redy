@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QtNetwork>
 #include <iostream>
+#include <string>
 
 class serveur: public QObject
 {
@@ -18,6 +19,7 @@ private:
 public:
     serveur();
     void send_message(QString texte);
+    void translation_message(QString texte);
 
 public slots:
     void sessionOuverte();

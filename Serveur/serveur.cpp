@@ -1,4 +1,5 @@
 #include "serveur.h"
+#include <string>
 
 serveur::serveur()
 {
@@ -65,9 +66,31 @@ void serveur::lireTexte()
     QString texte;
     in >> texte;
     std::cout << "MESSAGE ENVOYER ::\n" << texte.toStdString() << std::endl;
-    send_message(texte);
+    translation_message(texte);
     m_blockSize = 0;
     //lireTexte();
+}
+void serveur::translation_message(QString texte) {
+
+    int i = 0;
+
+    while (texte.at(i) != '?' && texte.at(i+1) != '0' && texte.at(i+2) != '?') {
+        i++;
+    }
+    std::string text_convertion = texte.toStdString();
+    std::string message = text_convertion.substr(0, i+2);
+
+    text_convertion = texte.toStdString();
+    std::size_t pos = text_convertion.find("?0?");
+    std::string autor_message = text_convertion.substr(pos);
+    autor_message = autor_message.substr(3, autor_message.length());
+
+    std::string final_message = "Message envoye par : ";
+    final_message = final_message + autor_message;
+    final_message = final_message + "\n";
+    final_message = final_message + message;
+    send_message(QString::fromStdString(final_message));
+
 }
 void serveur::send_message(QString texte) {
 
