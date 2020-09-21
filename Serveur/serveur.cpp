@@ -101,6 +101,8 @@ void serveur::send_message(QString texte) {
     out << texte;
     out.device()->seek(0);
     out << (quint16)(block.size() - sizeof(quint16));
-    m_socket_client[0]->write(block);
+//    for( int i = 0; i < m_nbclients; i++ )
+        m_socket_client[0]->write(block);
+        m_socket_client[1]->write(block);
 }
 

@@ -26,7 +26,7 @@ void user::write_message() {
     m_client.send_message(m_message);
 }
 
-void user::menu() {
+bool user::menu() {
 
     std::cout << "- - Menu - -\n(taper le numero pour chosir) :\n1 : Envoyer un message\n2 : Quitter la conservation\n3 : Plus d'option " << endl;
     string message;
@@ -40,12 +40,12 @@ void user::menu() {
     }
     else if (message.at(0) == '2') {
         std::cout << "- - FERMETURE DU PROGRAMME - -" << endl;
+        return false;
     }
     else if (message.at(0) == '3') {
         std::cout << "- - OPTION DU PROGRAMME - -" << endl;
     }
-    else
-        menu();
+    return true;
 }
 
 QString user::get_name() {
