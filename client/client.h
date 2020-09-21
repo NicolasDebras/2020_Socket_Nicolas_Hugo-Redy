@@ -17,7 +17,7 @@ class Client: public QObject
         Client();
         void send_message(QString texte);
 
-    private slots:
+    public slots:
         void lireTexte();
         void afficherErreur( QAbstractSocket::SocketError socketError);
 

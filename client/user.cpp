@@ -36,6 +36,7 @@ void user::menu() {
     if (message.at(0) == '1') {
         std::cout << "- - ENVOIE DE MESSAGE - -" << endl;
         write_message();
+        m_client.lireTexte();
     }
     else if (message.at(0) == '2') {
         std::cout << "- - FERMETURE DU PROGRAMME - -" << endl;

@@ -40,6 +40,7 @@ void Client::lireTexte() {
     in >> texte;
     std::cout << "\n" << texte.toStdString() << std::endl;
     m_blockSize = 0;
+    lireTexte();
 }
 
 void Client::afficherErreur( QAbstractSocket::SocketError socketError) {
