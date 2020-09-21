@@ -5,8 +5,9 @@ Client::Client() {
     std::cout << "Application Client" << std::endl;
     m_tcpSocket = new QTcpSocket(this);
 
-    connect( m_tcpSocket, SIGNAL(readyRead()), this,
-             SLOT(lireTexte()));
+    for (int i = 0; i != 100; i++)
+        connect( m_tcpSocket, SIGNAL(readyRead()), this,
+                 SLOT(lireTexte()));
 
     connect( m_tcpSocket, SIGNAL(error(QAbstractSocket::SocketError)),
              this, SLOT(afficherErreur(QAbstractSocket::SocketError)));

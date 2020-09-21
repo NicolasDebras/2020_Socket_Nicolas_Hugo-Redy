@@ -66,12 +66,6 @@ void serveur::lireTexte()
     in >> texte;
     std::cout << "\n" << texte.toStdString() << std::endl;
     send_message(texte);
-    send_message(texte);
-    send_message(texte);
-    send_message(texte);
-    send_message(texte);
-    send_message(texte);
-
     m_blockSize = 0;
     //lireTexte();
 }
