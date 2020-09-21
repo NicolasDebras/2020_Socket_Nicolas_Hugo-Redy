@@ -64,14 +64,8 @@ void serveur::lireTexte()
         return;
     QString texte;
     in >> texte;
-    std::cout << "\n" << texte.toStdString() << std::endl;
+    std::cout << "MESSAGE ENVOYER ::\n" << texte.toStdString() << std::endl;
     send_message(texte);
-    send_message(texte);
-    send_message(texte);
-    send_message(texte);
-    send_message(texte);
-    send_message(texte);
-
     m_blockSize = 0;
     //lireTexte();
 }

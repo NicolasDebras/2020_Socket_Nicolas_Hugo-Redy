@@ -20,9 +20,8 @@ void user::write_message() {
     string message;
     cout << "Please, enter your message: ";
     getline(cin, message);
-    message = message +  "User ";
+    message = message +  "?0?";
     message = message +  m_name.toStdString();
-    std::cout << "\n" << message << std::endl;
     m_message = QString::fromStdString(message);
     m_client.send_message(m_message);
 }
