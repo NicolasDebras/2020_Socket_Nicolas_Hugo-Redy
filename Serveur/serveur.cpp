@@ -70,6 +70,7 @@ void serveur::lireTexte()
     m_blockSize = 0;
     //lireTexte();
 }
+/* Fonction qui traduit le message */
 void serveur::translation_message(QString texte) {
 
     int i = 0;

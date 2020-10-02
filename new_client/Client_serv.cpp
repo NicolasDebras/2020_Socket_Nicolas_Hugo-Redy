@@ -1,11 +1,11 @@
-#include <Client.h>
+#include <Client_serv.h>
 
-Client::Client() {
+Client_serv::Client_serv() {
 
     std::cout << "Application Client" << std::endl;
     m_tcpSocket = new QTcpSocket(this);
 
-    //for (int i = 0; i != 100; i++)
+    for (int i = 0; i != 100; i++)
         connect( m_tcpSocket, SIGNAL(readyRead()), this,
                  SLOT(lireTexte()));
 
@@ -22,7 +22,7 @@ Client::Client() {
     m_tcpSocket->connectToHost(
                 QHostAddress("127.0.0.1").toString(),53000 );
 }
-void Client::lireTexte() {
+void Client_serv::lireTexte() {
 
     QDataStream in(m_tcpSocket);
     in.setVersion(QDataStream::Qt_4_0);
@@ -36,13 +36,17 @@ void Client::lireTexte() {
     if (m_tcpSocket->bytesAvailable() < m_blockSize)
         return;
 
-    QString texte;
-    in >> texte;
-    std::cout << "\n" << texte.toStdString() << std::endl;
+    if (nb == 0) {
+        in >> recu[nb];
+        nb++;
+    } else {
+        in >> recu[nb];
+        nb = 0;
+    }
     m_blockSize = 0;
 }
 
-void Client::afficherErreur( QAbstractSocket::SocketError socketError) {
+void Client_serv::afficherErreur( QAbstractSocket::SocketError socketError) {
     switch (socketError) {
     case QAbstractSocket::RemoteHostClosedError:
         break;
@@ -58,7 +62,7 @@ void Client::afficherErreur( QAbstractSocket::SocketError socketError) {
 
     }
 }
-void Client::send_message(QString texte) {
+void Client_serv::send_message(QString texte) {
 
     QByteArray block;
     QDataStream out(&block, QIODevice::WriteOnly);
@@ -68,4 +72,8 @@ void Client::send_message(QString texte) {
     out.device()->seek(0);
     out << (quint16)(block.size() - sizeof(quint16));
     m_tcpSocket->write(block);
+}
+QString Client_serv::get_recu(int i) {
+
+    return recu[i];
 }
